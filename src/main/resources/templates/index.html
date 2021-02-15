@@ -19,8 +19,7 @@
 
 <script type="text/javascript" src="../static/sqr.js" th:src="@{/sqr.js}"></script>
 
-<script type="text/javascript" href="../static/css/jquery-3.4.1.mn.js"></script>
-
+<script type="text/javascript" src="../static/css/jquery-3.4.1.mn.js"  th:src="@{/css/jquery-3.4.1.mn.js}"></script>
 <script type="text/javascript"> 
     $(function(){  
 	$("h5").slideUp(500);
@@ -74,13 +73,7 @@ h5 span
 color:red;
 
 }
-.e{
-  background-image:url('img/8.jpg');
-  background-size:100% 100%;
-  background-attachment:fixed;
-  width:100%;
- height:70%;
-}
+
 .hearderset{
  padding-top:170px;
  box-sizing:border-box;
@@ -90,8 +83,8 @@ color:red;
 		position:relative;
 		z-index:1;
 		background:#fff;
-		width:80rem;
-		height:70rem;
+		width:90rem;
+		height:50rem;
   padding-top: 3.5vmin;
  margin:1rem;
  border-radius:.5em;
@@ -174,7 +167,7 @@ color:red;
  <span class="navbar-text"style="position:absolute; left:20%"><H5 style="color:#ED1F83">
   Gestion de transfert d'argent
   </h5></span>
-<br><br><br><br><br>
+<br><br>
 	<div class="container my-2">
 	<h1>Client List</h1>
 	
@@ -183,16 +176,22 @@ color:red;
 			<thead>
 				<tr>
 					<th>
-					client  Name</a>
+					client  Name
 					</th>
 					<th>
-					client prenom</a>
+					client prenom
 					</th>
 					<th>
-					client Telphone</a>
+					client Telphone
 					</th>
 					<th> Actions </th>
 				</tr>
+		
+		
+		
+		
+		
+		
 			</thead>
 			<tbody>
 				<tr th:each="c : ${client}">
@@ -201,6 +200,8 @@ color:red;
 					<td th:text="${c.Tel}"></td>
 					<td> <a th:href="@{/client/delete/(id=${c.id})}" class="btn btn-danger" id="deleteButton" >supprime client</a>
 					  
+					<td><a th:href="@{/compte/getOn/(id=${c.id})}" class="btn btn-danger"  >Compte</a>
+					
 					</td>
 				</tr>
 			</tbody>
@@ -220,7 +221,7 @@ color:red;
         </button>
       </div>
       <div class="modal-body">
-        <p>voulez-vous supprimez ce client?</p>
+        <p>voulez-vous supprimez ce client!</p>
       </div>
       <div class="modal-footer">
         <a href=""  class="btn btn-primary" id="delRef">oui, supprime</a>

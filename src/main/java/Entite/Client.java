@@ -1,15 +1,22 @@
 package Entite;
 import javax.persistence.Column;  
+import javax.persistence.FetchType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Id;  
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.Collection;
+
 
 @Entity
 @Table(name="Client")
 public class Client {
 	public Client() {}
+
+	@OneToMany(mappedBy = "client", fetch=FetchType.LAZY)
+	private Collection<Compte> comptes;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
@@ -20,17 +27,14 @@ String nom;
 String prenom;
 	@Column
 int Tel;
-	@Column
-float solde;
-	@Column
-	String password;
-	public Client(Integer id, String nom, String prenom, int tel, float solde) {
+	
+	
+	public Client(Integer id, String nom, String prenom, int tel) {
 		super();
 		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
 		Tel = tel;
-		this.solde = solde;
 	}
 	public Integer getId() {
 		return id;
@@ -56,12 +60,7 @@ float solde;
 	public void setTel(int tel) {
 		Tel = tel;
 	}
-	public float getSolde() {
-		return solde;
-	}
-	public void setSolde(float solde) {
-		this.solde = solde;
-	}
+	
 	
 
 }

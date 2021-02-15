@@ -1,7 +1,9 @@
  package Entite;
 
-//import javax.persistence.Entity;
-//import javax.persistence.Table;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 //@Entity
 //@Table
@@ -27,4 +29,7 @@ public void setPassword(String password) {
 	this.password = password;
 }
 
+@ManyToOne // cle etranger
+@JoinColumn(name = "id")
+private Client client;
 }

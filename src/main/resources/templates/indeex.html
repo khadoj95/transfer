@@ -19,7 +19,7 @@
 
 <script type="text/javascript" src="../static/sqr.js" th:src="@{/sqr.js}"></script>
 
-<script type="text/javascript" href="../static/css/jquery-3.4.1.mn.js"></script>
+<script type="text/javascript" href="../static/scc/jquery-3.4.1.mn.js"></script>
 
 <script type="text/javascript"> 
     $(function(){  
@@ -91,7 +91,7 @@ color:red;
 		z-index:1;
 		background:#fff;
 		width:80rem;
-		height:20rem;
+		height:70rem;
   padding-top: 3.5vmin;
  margin:1rem;
  border-radius:.5em;
@@ -133,30 +133,19 @@ color:red;
       <div class="modal-body">
      <div class="form-group">
             <label for="recipient-name" class="col-form-label">id:</label>
-            <input type="text" class="form-control" id="recipient-name" name="id">
+            <input type="text" class="form-control" id="recipient-name" name="codeCompte">
           </div>
           
-           <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Telphone:</label>
-            <input type="text" class="form-control" id="recipient-name" name="Tel">
-          </div>
-          
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Nom:</label>
-            <input type="text" class="form-control" id="recipient-name" name="nom">
-          </div>
-          
-          
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Prenom:</label>
-            <input type="text" class="form-control" id="recipient-name" name="prenom">
-          </div>
           
          
           
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Solde:</label>
             <input type="text" class="form-control" id="recipient-name" name="solde">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Idcompte:</label>
+            <input type="text" class="form-control" id="recipient-name" name="client">
           </div>
       
       </div>
@@ -176,39 +165,70 @@ color:red;
   </h5></span>
 <br><br><br><br><br>
 	<div class="container my-2">
-	<h1>Client List</h1>
-	
+	<h1>Compte List</h1>
+	<div class="container spacer">
+<form th:action="@{retirer}"  method="get">
+<div class="panel panel-heading">Operations sur le compte</div>
+<div class="form-group">
+<label>  Numero compte :</label>
+<input type="text" name="compte1" th:value="${compte1}"/>
+<label>  Montant a retirer:</label>
+<input type="text" name="solde" th:value="${montant}" />
+<button type="submitt" class="btn btn-primary"> Retirer </button>
+</div>
+</form> </div>
+<div class="container spacer">
+<form th:action="@{versser}"  method="get">
+<div class="form-group">
+<label>  Numero compte :</label>
+<input type="text" name="compte1" th:value="${compte1}"/>
+<label>  Montant a verser :</label>
+<input type="text" name="solde" th:value="${montant}" />
+<button type="submitt" class="btn btn-primary"> Versser </button>
+</div>
+</form> </div>
+<div class="container spacer">
+<form th:action="@{virement}"  method="get">
+<div class="form-group">
+<label>Numero compte 1 :</label>
+<input type="text" name="compte1" th:value="${compte1}"/>
+<label>  Numero compte 2 :</label>
+<input type="text" name="compte2" th:value="${compte2}"/>
+<label>  Montant :</label>
+<input type="text" name="solde" th:value="${montant}" />
+<button type="submitt" class="btn btn-primary"> Virer</button>
+</div>
+</form> </div>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal" > Add Compte</button>
 		<table border="1" class = "table table-striped table-responsive-md">
 			<thead>
 				<tr>
 					<th>
-					client  Name</a>
+					id compte
 					</th>
 					<th>
-					client prenom</a>
+					Solde
 					</th>
 					<th>
-					client Telphone</a>
-					</th>
-					<th>
-					client Solde</a>
+					client nom
 					</th>
 					<th> Actions </th>
 				</tr>
+		
+		
+		
+		
+		
+		
 			</thead>
 			<tbody>
-				<tr th:each="c : ${client}">
-					<td th:text="${c.nom}"></td>
-					<td th:text="${c.prenom}"></td>
-					<td th:text="${c.Tel}"></td>
-					<td th:text="${c.solde}"></td>
-					<td> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal" > Versement</button>
-					
-					 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal" > Retrait </button>
-				
-				
-				 <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#addModal" >Virement </button>
-				
+				<tr th:each="cq : ${compte}">
+					<td th:text="${cq.codeCompte}"></td>
+					<td th:text="${cq.solde}"></td>
+					<td th:text="${cq.client}"></td>
+					<td> <a th:href="@{/compte/delete/(id=${cq.codeCompte})}" class="btn btn-danger" id="deleteButton" >supprime client</a>
+					  
+					</td>
 				</tr>
 			</tbody>
 		</table>
@@ -227,7 +247,7 @@ color:red;
         </button>
       </div>
       <div class="modal-body">
-        <p>voulez-vous supprimez ce client?</p>
+        <p>voulez-vous supprimez ce client!</p>
       </div>
       <div class="modal-footer">
         <a href=""  class="btn btn-primary" id="delRef">oui, supprime</a>
@@ -238,4 +258,6 @@ color:red;
 </div>
 </body>
 </html>
+ 
+
  

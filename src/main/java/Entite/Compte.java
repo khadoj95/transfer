@@ -13,41 +13,45 @@ import javax.persistence.ManyToOne;
 
 
 @Entity
-@Table(name="copmt")
+@Table(name="copmte")
 public class Compte {
-
+public Compte() {
+	
+}
 	@Id
 	// @GeneratedValue, type string
 	@Column
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private String idCompte;
+	public Integer codeCompte;
+	
 	@Column
-	private Date dateC;
-	@Column
-	private double solde;
-	public String getIdCompte() {
-		return idCompte;
+	private long solde;
+	@ManyToOne // cle etranger
+	@JoinColumn(name = "client")
+	public Client client;
+	public Integer getIdCompte() {
+		return codeCompte;
 	}
-	public void setIdCompte(String idCompte) {
-		this.idCompte = idCompte;
+	public void setIdCompte(Integer idCompte) {
+		this.codeCompte = idCompte;
 	}
-	public Compte(String idCompte, Date dateC, double solde, Client client) {
+	public Compte(Integer idCompte, long solde, Client client) {
 		super();
-		this.idCompte = idCompte;
-		this.dateC = dateC;
+		this.codeCompte = idCompte;
+		
 		this.solde = solde;
 		this.client = client;
 	}
-	public Date getDateC() {
-		return dateC;
+	public Compte(Integer idCompte) {
+		super();
+		this.codeCompte = idCompte;
+		
 	}
-	public void setDateC(Date dateC) {
-		this.dateC = dateC;
-	}
-	public double getSolde() {
+	
+	public long getSolde() {
 		return solde;
 	}
-	public void setSolde(double solde) {
+	public void setSolde(long solde) {
 		this.solde = solde;
 	}
 	public Client getClient() {
@@ -56,9 +60,7 @@ public class Compte {
 	public void setClient(Client client) {
 		this.client = client;
 	}
-	@ManyToOne // cle etranger
-	@JoinColumn(name = "id")
-	private Client client;
+	
 	
 	
 }
