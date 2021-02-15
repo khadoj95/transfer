@@ -1,5 +1,5 @@
 package Service;
-
+import java.util.Optional;
 	import java.util.ArrayList;
 	import java.util.List;
 	import org.springframework.beans.factory.annotation.Autowired;
@@ -7,24 +7,36 @@ package Service;
 	import Entite.Client;
 	import Repository.ClientRepository;
 	//defining the business logic
+	@Service
+public class ClientService {
 	
-public class ClientService implements SER{
+	
 		@Autowired
-	    private ClientRepository clientrepository;
-		@Autowired
-	    public List<Client> getalc() {
-	        return clientrepository.findAll();
-	    }
+	   private ClientRepository clientRepository;
+		public List<Client> getall(){
+			return (List<Client>) clientRepository.findAll();
+		}
+	 public Optional<Client> getOne(Integer id) {
+		 return clientRepository.findById(id);
+	 }
+	 
+	 public void ajoute(Client c) {
+		 clientRepository.save(c);
+	 }
+	 public void sup(Integer id) {
+	 	clientRepository.deleteById(id);
+	 }
+	 // public List<Client> getalc() {
+	 //     return clientrepository.findAll();
+	 // }
 
-	    public void saveCustomer(Client client) {
-	    	clientrepository.save(client);
-	    }
+	 // public void saveCustomer(Client client) {
+	 //  	clientrepository.save(client);
+	 //  }
 
 	   // public Client getCustomer(long id) {
 	   //     return clientrepository.findById(id).get();
 	    //}
 
-	    public void deleteCustomer(long id) {
-	    	clientrepository.deleteById(id);
-	    }
+	
 }

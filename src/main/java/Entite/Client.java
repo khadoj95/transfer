@@ -7,13 +7,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table
+@Table(name="Client")
 public class Client {
-	
+	public Client() {}
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
-public long id;
+public Integer id;
 	@Column
 String nom;
 	@Column
@@ -22,7 +22,7 @@ String prenom;
 int Tel;
 	@Column
 float solde;
-	public Client(long id, String nom, String prenom, int tel, float solde) {
+	public Client(Integer id, String nom, String prenom, int tel, float solde) {
 		super();
 		this.id = id;
 		this.nom = nom;
@@ -30,10 +30,10 @@ float solde;
 		Tel = tel;
 		this.solde = solde;
 	}
-	public long getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getNom() {

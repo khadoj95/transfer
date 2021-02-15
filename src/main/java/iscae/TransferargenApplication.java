@@ -3,7 +3,11 @@ package iscae;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
-@EntityScan("Entite")
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+@EntityScan(basePackages={"Entite","controller","Repository","Service"})
+@EnableJpaRepositories("Repository")
+@ComponentScan({"Entite","controller","Repository","Service"})
 @SpringBootApplication
 public class TransferargenApplication {
 
