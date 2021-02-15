@@ -22,6 +22,8 @@ String prenom;
 int Tel;
 	@Column
 float solde;
+	@Column
+	String password;
 	public Client(Integer id, String nom, String prenom, int tel, float solde) {
 		super();
 		this.id = id;
