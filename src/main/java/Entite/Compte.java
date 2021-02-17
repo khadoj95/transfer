@@ -25,7 +25,7 @@ public Compte() {
 	public Integer codeCompte;
 	
 	@Column
-	private long solde;
+	public long solde;
 	@ManyToOne // cle etranger
 	@JoinColumn(name = "client")
 	public Client client;
@@ -64,3 +64,5 @@ public Compte() {
 	
 	
 }
+
+

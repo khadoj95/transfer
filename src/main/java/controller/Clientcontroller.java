@@ -2,9 +2,12 @@ package controller;
 
 import Entite.Client;
 import Entite.Compte;
-import Service.ClientService; 
+import Service.ClientService;
+import Repository.ClientRepository;
 import Repository.ComteRepository;
 import Service.CopmtService;
+
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +28,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/client")
 public class Clientcontroller {
 	@Autowired
-	public CopmtService compservice;
+	   private ClientRepository clientRepository;
 	@Autowired
 	private ClientService clientservice;
 	
@@ -37,9 +40,9 @@ public class Clientcontroller {
 	}
 	@RequestMapping("/getOne") 
 	@ResponseBody
-	public Optional<Client> getOne(Integer Id)
+	public Optional<Client> getOne(Integer id)
 	{
-		return clientservice.getOne(Id);
+		return clientservice.getOne(id);
 	}
 	
 	@PostMapping("/ajoute")
@@ -54,5 +57,12 @@ public class Clientcontroller {
 		return "redirect:/client/getAll";
 	}
 	
+	 @RequestMapping(value="/update", method = {RequestMethod.PUT, RequestMethod.GET})
+	 public String updatet (Client client) {
+		 clientservice.update(client);
+	 	return "redirect:/client/getAll";
+	 }
+	 
 	
-	}
+	
+}

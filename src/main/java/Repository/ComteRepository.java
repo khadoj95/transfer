@@ -17,9 +17,9 @@ import Entite.Compte;
 @Repository
 public interface ComteRepository extends JpaRepository<Compte, Integer>{
 
-	@Modifying  @Transactional @Query(value="update Compte c set c.solde=c.solde+:y where c.num like :x " ,nativeQuery=true) 
+	@Modifying  @Transactional @Query(value="update copmte c set c.solde=c.solde+:y where c.code_compte like :x " ,nativeQuery=true) 
 	public void versser (@Param("x")Integer num ,@Param("y") long solde);
-	@Modifying  @Transactional @Query(value=" update Compte c set c.solde=c.solde-:y where c.num like :x " ,nativeQuery=true) 
+	@Modifying  @Transactional @Query(value=" update copmte c set c.solde=c.solde-:y where c.code_compte like :x " ,nativeQuery=true) 
 	public void retirer(@Param("x")Integer compte1,@Param("y")long solde);
 	
 	}

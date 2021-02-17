@@ -18,7 +18,6 @@ public class Client {
 	@OneToMany(mappedBy = "client", fetch=FetchType.LAZY)
 	private Collection<Compte> comptes;
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
 public Integer id;
 	@Column

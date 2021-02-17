@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import Entite.Client;
 import Entite.Compte;
 import Repository.ComteRepository;
 @Service
@@ -21,4 +22,7 @@ public class CopmtService {
 	 public void supp(Integer id) {
 		 comptRepository.deleteById(id);
 		 }
+	 public void ajoute(Compte c) {
+		 comptRepository.save(c);
+	 }
 }

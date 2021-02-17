@@ -25,17 +25,9 @@ public class ClientService {
 	 public void sup(Integer id) {
 	 	clientRepository.deleteById(id);
 	 }
-	 // public List<Client> getalc() {
-	 //     return clientrepository.findAll();
-	 // }
-
-	 // public void saveCustomer(Client client) {
-	 //  	clientrepository.save(client);
-	 //  }
-
-	   // public Client getCustomer(long id) {
-	   //     return clientrepository.findById(id).get();
-	    //}
+     public void update(Client c1) {
+    	 clientRepository.save(c1) ;
+     }
 
 	
 }
